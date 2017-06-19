@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width"/>
+    <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+	<style>
+	</style>
+</head>
+<body>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){	
+var tabBarMenu = api.require('tabBarMenu'),
+    theme = 'simple';
+tabBarMenu.open({
+    defaultBarSelect: 1,
+    autoLayout: true,
+    barConfig: {
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_bg.png'
+    },
+    barItemConfig: {
+        titleColor: '#fff',
+        titleSelectColor: '#fff',
+        fontSize: 11.0,
+        textMarginTop: 41.0,
+        primaryItem: 2
+    },
+    barItems: [{
+        title: '动态',
+        bgImg: 'widget://image/tabBarMenu/' + theme + 'tabbar_icon_auth.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_icon_auth_click.png'
+    }, {
+        title: '与我有关',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_icon_at.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_icon_at_click.png'
+    }, {
+        title: '动态',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_click.png'
+    }, {
+        title: '玩吧',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_icon_more.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_icon_more_click.png'
+    }, {
+        title: '空间',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_icon_space.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_icon_space_click.png'
+    }],
+    menuConfig: {
+        coverBgColor: '#000000',
+        coverAlpha: 0.8,
+        rows: 4
+    },
+    menuItemConfig: {
+        titleColor: '#fff',
+        titleSelectColor: '#fff',
+        fontSize: 11.0,
+        textMarginTop: 90.0
+    },
+    menuItems: [{
+        title: '说说',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_talk.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_talk_click.png'
+    }, {
+        title: '照片',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_transferphotos.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_transferphotos_click.png'
+    }, {
+        title: '水印相机',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_watermarkcamera.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_watermarkcamera_click.png'
+    }, {
+        title: '视频',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_video.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_video_click.png'
+    }, {
+        title: '签到',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_registration.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_registration_click.png'
+    }, {
+        title: '连拍',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_continuousshooting.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_continuousshooting_click.png'
+    }, {
+        itle: '日志',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_journal.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_journal_click.png'
+    }, {
+        title: '二维码',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_2dbarcode.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_2dbarcode_click.png'
+    }, {
+        title: '语音相机',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_videocamera.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_videocamera_click.png'
+    }, {
+        title: '位置',
+        bgImg: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_place.png',
+        bgImgClick: 'widget://image/tabBarMenu/' + theme + '/tabbar_btn_popup_place_click.png'
+    }]
+}, function(ret, err) {
+    if (ret) {
+        alert(JSON.stringify(ret));
+    } else {
+        alert(JSON.stringify(err));
+    }
+});
+
+    };
+</script>
+</html>

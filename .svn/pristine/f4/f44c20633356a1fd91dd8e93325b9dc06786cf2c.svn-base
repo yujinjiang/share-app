@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+    	
+    	
+    	body{
+    	     
+    	  font-style: italic;
+    	}
+    	
+    	.touxiang{
+    	   width: 100px;
+    	   height:100px;
+    	   border-radius: 50%;
+    	   border: 1px solid;
+    	   text-align: center;
+           line-height: 90px;
+           font-style: italic;
+           margin: 0px auto;
+           margin-top:20px;
+           box-shadow: 10px 10px 5px #010101;
+           color: gray; 
+           background: #ffffff;
+         
+    	}
+    	.denglu input{
+    	   height: 50px;
+    	   width: 300px;
+    	   display: block;
+    	   margin: 0px auto;
+    	   border: 1px solid;
+    	   border-radius:5px; 
+    	   box-shadow: 5px 5px 3px #888888;
+    	   margin-top:20px;
+    	   font-size: 30px;
+    	   color: gray;
+    	}
+    	.mima input{
+    	   height: 50px;
+    	   width: 300px;
+    	   display: block;
+    	   margin: 0px auto;
+    	 
+           border-radius:5px; 
+    	   box-shadow: inset 5px 5px 1px #888888;
+    	   margin-top:20px;
+    	   font-size: 30px;
+    	   text-align: center;
+    	   color: gray;
+    	    font-style: italic;
+    	}
+    	.zhanghao input{
+    	   height: 50px;
+    	   width: 300px;
+    	   display: block;
+    	   margin: 0px auto;
+    	  
+    	   border-radius:5px; 
+    	   margin-top:20px;
+    	   font-size: 30px;
+    	   text-align: center;
+    	   color: gray;
+    	   box-shadow: inset 5px 5px 1px #888888;
+    	    font-style: italic;
+    	}
+    	.zhuce{
+    	   height: 50px;
+    	   width: 300px;
+    	   display: block;
+    	   margin: 0px auto;
+    	  
+    	   
+    	  
+    	   margin-top:20px;
+    	   font-size: 30px;
+    	   text-align: center;
+    	   line-height: 50px;
+    	   color: gray;
+    	}
+    	#wapper{
+    	   height:600px;
+    	   overflow:hidden;
+    	   background:  linear-gradient(rgba(242,207,123,1),rgba(74,110,108,0.5) );
+    	   background: gray;
+    	   opacity: 0.5;
+    	}
+    	#frame{
+    	  
+    	   width: 340px;
+    	   margin: 0px auto;
+    	   margin-top:20px;
+    	   border: 3px solid;
+    	   border-radius:12px;
+    	   padding-bottom: 30px;
+    	   border-color:#848484;
+    	   background: #FFFFFF;
+    	   
+    	}
+    	img{
+    	  display:block;
+    	    width: 100px;
+    	   height:100px;
+    	   border-radius: 50%;
+    	   border: 1px solid;
+    	   text-align: center;
+           line-height: 90px;
+           font-style: italic;
+           margin: 0px auto;
+           margin-top:20px;
+           box-shadow: 10px 10px 5px #010101;
+           color: gray; 
+           background: #ffffff;
+          
+    	}
+    	.add1{
+    	 font-style: italic;
+    	  font-size: 30px;
+    	}
+    </style>
+</head>
+<body>
+ <div id="wapper"  >
+	<div class="touxiang add1 "  v-on:click='openPic' v-show='!data'  > <p v-show="!data">注册</p></div>
+	<img v-if="data" v-bind:src='data' v-on:click="" />
+	<div id="frame" >
+	<form>
+	<div class="zhanghao" ><input id="MZ" type="text"  placeholder="姓名" v-model='name'  value="" /></div>
+	<div class="zhanghao" ><input type="number"  placeholder="账号" v-model='count'  value="" /></div>
+	<div class="mima" ><input type="password" placeholder="密码" v-model='pas' value="" /></div>
+	<div class="denglu" ><input type="button" value="确认" v-on:click='submit' /></div>
+	</form>
+	</div>
+</div>	
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.js" ></script>
+<script type="text/javascript">
+	apiready = function(){
+
+		var app = new Vue({
+		   el:'#wapper',
+		   data:{
+		     data:'',
+		     name:'',
+		     count:'',
+		     pas:'',
+		   },
+		   methods:{
+		      openPic:function(){
+		         api.confirm({
+		         title:'提示',
+		         msg:'从哪里取照片？',
+		         buttons:['拍照','相册','取消']
+                 },function(ret,err){
+                 	if(3==ret.buttonIndex){
+                 	   return;
+                 	}
+                 	var sourceType = 'album';
+                 	
+                 	if(1==ret.buttonIndex){
+                 	  sourceType = 'camera';
+                 	}
+                 	
+                 	api.getPicture({
+				    sourceType: sourceType,
+				    encodingType: 'jpg',
+				    mediaValue: 'pic',
+				}, function(ret, err) {
+				    if (ret) {
+				        alert(JSON.stringify(ret));
+				        app.data = ret.data;
+				    } else {
+				        alert(JSON.stringify(err));
+				    }
+				});
+                 	
+                 });
+		      },
+		      
+		      
+		      
+		      
+		      submit:function(){
+		     if(this.name==""||this.count==""||this.pas==""){
+		     alert("非空");
+		     return; 
+		   };
+		   
+		   
+		  
+		  
+		     this.color=true;
+		     this.dsb="disabled"
+		      api.ajax({
+			  url: 'http://139.199.168.82/vue/signup.php',    //signup.php
+			    method: 'get',
+			    dataType:'text',
+			    data: {
+			            values: {
+			            name: this.name,
+			            count:this.count,
+			            pas:this.pas          
+			        }
+			       
+			    }
+			}, function(ret, err) {
+			    if (ret==0) {
+			        alert("账号已经存在");
+			        wapper.color=false;
+			        wapper.dsb=false;
+			       // alert(ret);
+			    } else {
+			        wapper.color=false;
+			        wapper.dsb=false;
+			        alert("注册成功");
+			     //  alert(ret);
+			       
+			        var user={};
+			        user.name=wapper.name;
+			        user.count=wapper.count;
+			        user.pas=wapper.pas;
+			        $api.setStorage('users',user);
+			        api.closeWin({
+                      name:'signin'
+                    });
+			    }
+			    
+			  
+			    
+			     //  重新放置属性
+			   document.getElementsByTagName('form')[0].reset();
+	
+			     // 重新放置属性
+			    // 关闭反应
+			     activity.closeKeyFrame({
+					    id: 1
+					});
+			     //关闭反应
+			     
+			    
+			});
+		      
+		      
+		      
+			//  提交数据到书记库
+		      //这里只是用来增加一个用户的体验
+		      var activity = api.require('UILoading');
+				activity.keyFrame({
+				    rect: {
+				        w: 80,
+				        h: 100
+				    },
+				    styles: {
+				        bg: 'rgba(0,0,0,0.5)',
+				        corner: 5,
+				        interval: 50,
+				        frame: {
+				            w: 80,
+				            h: 80
+				        }
+				    }
+				}, function(ret) {
+				    alert(JSON.stringify(ret));
+				});
+				//提交的时候 上下跳动 
+		      
+		      
+		      
+		      
+		      
+		     }
+		      
+		      
+		   
+		   }
+		});
+	};
+</script>
+</html>

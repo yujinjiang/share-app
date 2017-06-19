@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+    	body{
+    		background: gray;
+    		opacity: 0.5;
+    	}
+    	#wapper{
+    	  
+    	    
+    	}
+    	.pag{
+    	  height: 570px;
+    	}
+    	.SH-1{
+    	 height: 100px;
+    	 width: 340px;
+    	 background: #FFFFFF;
+    	 margin: 0px auto;
+    	 margin-top:20px;
+    	 border-radius:9px;
+    	 text-shadow: 2px 2px #555555; 
+    	 box-shadow: 10px 10px 5px #010101;
+    	 text-align: center;
+    	 font-size: 36px;
+    	 line-height: 90px;
+    	 font-style: italic; 
+    	}
+    	.SH-2{
+    	   display: box;
+    	   width: 300px;
+    	   height: 200px;
+    	   
+    	   border-radius:9px;
+    	   background: #FFFFFF;
+    	   margin: 0px auto;
+    	   margin-top:20px;  
+    	}
+    	.SH-2-1{
+    	   width: 150px;
+    	   float: left;
+    	   height:100px;
+    	   text-align: center;
+    	   line-height: 90px;
+    	   font-size: 23px;
+    	   font-style: italic;
+    	}
+    	.SH-3{
+    	 clear: both; 
+    	}
+    	.SH-4{
+    	  width: 300px;
+    	  height: 50px;
+    	  margin: 0px auto;
+    	  margin-top: 30px;
+    	  background: #FFFFFF;
+    	  text-align: center;
+    	  line-height: 50px;
+    	  border:1px solid;
+    	  border-radius:9px;  
+    	  box-shadow: 10px 10px 5px #010101;
+    	  font-size: 23px;
+    	  font-style: italic;
+    	}
+    </style>
+</head>
+<body>
+	<div id="wapper">
+	 <div  class="pag" >
+	   <div class="SH-1" >daily users</div>
+	   <div class="SH-2" >
+	      <div class="SH-2-1" >item1</div>
+	      <div class="SH-2-1" >item2</div>
+	      <div class="SH-2-1" >item3</div>
+	      <div class="SH-2-1" >item4</div>
+	   </div>
+	   <div class="SH-3" ></div>
+	   <div class="SH-4" >search more</div>
+	 </div>
+	 <div class="pag" >
+	    <div class="SH-1" >school uses</div>
+	   <div class="SH-2" >
+	      <div class="SH-2-1" >item1</div>
+	      <div class="SH-2-1" >item2</div>
+	      <div class="SH-2-1" >item3</div>
+	      <div class="SH-2-1" >item4</div>
+	   </div>
+	   <div class="SH-3" ></div>
+	   <div class="SH-4" >search more</div>
+	 </div>
+	 <div class="pag" >
+	    <div class="SH-1" >business uses</div>
+	   <div class="SH-2" >
+	      <div class="SH-2-1" >item1</div>
+	      <div class="SH-2-1" >item2</div>
+	      <div class="SH-2-1" >item3</div>
+	      <div class="SH-2-1" >item4</div>
+	   </div>
+	   <div class="SH-3" ></div>
+	   <div class="SH-4" >search more</div>
+	 </div>
+	 <div class="pag" >
+	    <div class="SH-1" >labor uses</div>
+	   <div class="SH-2" >
+	      <div class="SH-2-1" >item1</div>
+	      <div class="SH-2-1" >item2</div>
+	      <div class="SH-2-1" >item3</div>
+	      <div class="SH-2-1" >item4</div>
+	   </div>
+	   <div class="SH-3" ></div>
+	   <div class="SH-4" >search more</div>
+	 </div>
+	 <div  class="pag" >
+	      <div class="SH-1" >travel uses</div>
+	   <div class="SH-2" >
+	      <div class="SH-2-1" >item1</div>
+	      <div class="SH-2-1" >item2</div>
+	      <div class="SH-2-1" >item3</div>
+	      <div class="SH-2-1" >item4</div>
+	   </div>
+	   <div class="SH-3" ></div>
+	   <div class="SH-4" >search more</div>
+	 </div>
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.js" ></script>
+<script type="text/javascript" src="../script/slip.js" ></script>
+<script type="text/javascript">
+	apiready = function(){
+		
+		
+		var container = document.getElementById('wapper');
+		var pages = document.querySelectorAll('.pag');
+		var slip = Slip(container, 'y').webapp(pages);
+		
+		
+		
+	};
+</script>
+</html>

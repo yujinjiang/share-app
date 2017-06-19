@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+    	
+    	.touxiang{
+    	   width: 100px;
+    	   height:100px;
+    	   border-radius: 50%;
+    	   border: 1px solid;
+    	   text-align: center;
+           line-height: 90px;
+           font-style: italic;
+           margin: 0px auto;
+           margin-top:20px;
+           box-shadow: 10px 10px 5px #010101;
+           color: gray; 
+           background: #ffffff;
+         
+    	}
+    	.denglu input{
+    	   height: 50px;
+    	   width: 300px;
+    	   display: block;
+    	   margin: 0px auto;
+    	   border: 1px solid;
+    	   border-radius:5px; 
+    	   box-shadow: 5px 5px 3px #888888;
+    	   margin-top:20px;
+    	   font-size: 30px;
+    	   color: gray;
+    	}
+    	.mima input{
+    	   height: 50px;
+    	   width: 300px;
+    	   display: block;
+    	   margin: 0px auto;
+    	 
+           border-radius:5px; 
+    	   box-shadow: inset 5px 5px 1px #888888;
+    	   margin-top:20px;
+    	   font-size: 30px;
+    	   text-align: center;
+    	   color: gray;
+    	}
+    	.zhanghao input{
+    	   height: 50px;
+    	   width: 300px;
+    	   display: block;
+    	   margin: 0px auto;
+    	  
+    	   border-radius:5px; 
+    	   margin-top:20px;
+    	   font-size: 30px;
+    	   text-align: center;
+    	   color: gray;
+    	   box-shadow: inset 5px 5px 1px #888888;
+    	}
+    	.zhuce{
+    	   height: 50px;
+    	   width: 300px;
+    	   display: block;
+    	   margin: 0px auto;
+    	  
+    	   
+    	  
+    	   margin-top:20px;
+    	   font-size: 30px;
+    	   text-align: center;
+    	   line-height: 50px;
+    	   color: gray;
+    	}
+    	#wapper{
+    	   height:570px;
+    	   overflow:hidden;
+    	   background:  linear-gradient(rgba(242,207,123,1),rgba(74,110,108,0.5) );
+    	   background: gray;
+    	   opacity: 0.5;
+    	}
+    	#frame{
+    	  
+    	   width: 340px;
+    	   margin: 0px auto;
+    	   margin-top:20px;
+    	   border: 3px solid;
+    	   border-radius:12px;
+    	   padding-bottom: 30px;
+    	   border-color:#848484;
+    	   background: #FFFFFF;
+    	   
+    	}
+    	img{
+    	  display:block;
+    	    width: 100px;
+    	   height:100px;
+    	   border-radius: 50%;
+    	   border: 1px solid;
+    	   text-align: center;
+           line-height: 90px;
+           font-style: italic;
+           margin: 0px auto;
+           margin-top:20px;
+           box-shadow: 10px 10px 5px #010101;
+           color: gray; 
+           background: #ffffff;
+          
+    	}
+    </style>
+</head>
+<body>
+ <div id="wapper" >
+   
+   <div   >
+ 
+	<div class="touxiang" v-on:click='openPic' v-show='!data'  > <p v-show="!data">上传头像</p></div>
+	<img v-if="data" v-bind:src='data' v-on:click="openPic" />
+	<div id="frame" >
+	<div class="zhanghao" ><input type="number"  placeholder="账号" v-model='count' /></div>
+	<div class="mima" ><input type="password" placeholder="密码" v-model='passwords' /></div>
+	<div class="denglu" ><input type="button" value="登陆"  v-on:click='submit' /></div>
+	<div class="zhuce" v-on:click='tozhuce'   >forget|sign up</div>
+	</div>
+	
+	</div>
+</div>	
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.js" ></script>
+<script type="text/javascript">
+	apiready = function(){
+		var app = new Vue({
+		   el:'#wapper',
+		   data:{
+		     data:'',
+		     show1:'true',
+		     count:'',
+		     passwords:''
+		   },
+		   methods:{
+		      openPic:function(){
+		         api.confirm({
+		         title:'提示',
+		         msg:'从哪里取照片？',
+		         buttons:['拍照','相册','取消']
+                 },function(ret,err){
+                 	if(3==ret.buttonIndex){
+                 	   return;
+                 	}
+                 	var sourceType = 'album';
+                 	
+                 	if(1==ret.buttonIndex){
+                 	  sourceType = 'camera';
+                 	}
+                 	
+                 	api.getPicture({
+				    sourceType: sourceType,
+				    encodingType: 'jpg',
+				    mediaValue: 'pic',
+				}, function(ret, err) {
+				    if (ret) {
+				        alert(JSON.stringify(ret));
+				        app.data = ret.data;
+				    } else {
+				        alert(JSON.stringify(err));
+				    }
+				});
+                 	
+                 });
+		      },
+		      
+		      
+		      tozhuce:function(){
+		        api.openWin({
+	                name: 'zhuce',
+	                url: 'zhuce.html'
+                });
+		        
+		      },
+		      
+		      
+		      
+		      
+		    submit:function(){
+		     if(this.count==""||this.passwords==""){
+		     alert("非空");
+		     return; 
+		   };
+		   
+		   
+		  
+		  
+		    
+		      api.ajax({
+			    url: 'http://139.199.168.82/1.php',
+			    method: 'get',
+			    dataType:'text',
+			    data: {
+			            values: {
+			            count:1234,
+			            passwords:1234          
+			        }  
+			    }
+			},function(ret, err) {
+			    if (ret==0) {
+			       alert(ret);
+			    } else {
+			        alert(ret);  
+			    }
+			    
+			    
+			    
+			     //  重新放置属性
+			//   document.getElementsByTagName('form')[0].reset();
+	
+			     // 重新放置属性
+			    // 关闭反应
+			     activity.closeKeyFrame({
+					    id: 1
+					});
+			     //关闭反应
+			     
+			    
+			});
+		      
+		      
+		      
+			//  提交数据到书记库
+		      //这里只是用来增加一个用户的体验
+		      var activity = api.require('UILoading');
+				activity.keyFrame({
+				    rect: {
+				        w: 80,
+				        h: 100
+				    },
+				    styles: {
+				        bg: 'rgba(0,0,0,0.5)',
+				        corner: 5,
+				        interval: 50,
+				        frame: {
+				            w: 80,
+				            h: 80
+				        }
+				    }
+				}, function(ret) {
+				    alert(JSON.stringify(ret));
+				});
+				//提交的时候 上下跳动 
+		      
+		      
+		      
+		      
+		      
+		     }
+		      
+		      
+		      
+		   }
+		});
+	};
+</script>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+    	body{
+    		background: gray;
+    		opacity: 0.5;
+    	}
+    	  #header{
+    	  height: 50px;
+    	  background: green;
+    	  color: white;
+    	  font-size:22px;
+    	  line-height: 50px;
+    	  text-align: center;
+    	  opacity: 0.5; 
+    	}
+     div input,textarea{
+    	   height: 40px;
+    	   font-size: 20px;
+    	   line-height: 40px;
+    	   text-indent: 30px;
+    	   border: solid 1px;
+    	   margin-top: 23px;
+    	   margin-left: 20px;
+    	   margin-right: 20px;
+    	   opacity: 0.2;
+    	   width: 300px;
+    	   border-radius: 9px;
+    	  
+    	   box-shadow: inset 5px 5px 1px #888888;
+    	   color: gray;
+    	   font-size: 25px;
+    	   font-style: italic;
+    	}
+     div input{
+       text-align: center;
+    }	
+     .con{
+           text-align: center;
+           overflow: scroll;
+           color: gray;
+           background: #FFFFFF;
+     }
+     #maintext{
+       height:300px;
+       vertical-align: top;
+       overflow: scroll;
+       
+     }
+     #on{
+       text-align: center;
+       border-radius: 9px; 
+       background: #FFFFFF;
+       height: 50px;
+     }
+     .img{
+        position: relative;
+        width:270px;
+        text-align: center;
+        background: #FFFFFF;
+        border-radius:7px;
+        margin: 0px auto;
+        margin-top: 30px;
+        box-shadow: 10px 10px 5px #010101;
+     }
+     .pstimg{
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        background: #FFFFFF;
+     }
+     .color{
+         opacity: 1;
+         width: 270px;
+         height: 400px;
+         background: #FFFFFF;
+      }
+      select{
+        width: 270px;
+        height: 50px;
+        display: block;
+        margin: 0px auto;
+        margin-top: 20px;
+        border-radius:7px;
+        font-size: 23px;
+        text-align: center;
+        text-indent: 10px; 
+        background: #FFFFFF;
+        color: gray;
+        font-style: italic;
+        text-shadow: 2px 2px #555555;
+        opacity: 1;
+      }
+      #wapper{
+      
+        height: 570px;
+        overflow: scroll;
+       
+      }
+      #biaodan{
+          width: 340px;
+          margin: 0px auto;
+          margin-top:20px;
+          border: 1px solid;
+          border-radius:7px;
+          padding-bottom: 20px;
+          background: #ffffff; 
+          box-shadow: 10px 10px 5px #010101;
+      }
+      img{
+        
+        border-radius:7px;
+        opacity: 1; 
+        
+      }
+      .addmore{
+        background:#FFFFFF;
+        padding-bottom: 30px;
+        width: 300px;
+        border-radius:9px;
+        text-align: center;
+        margin: 0px auto; 
+      }
+      .make{
+         display: block;
+         width: 300px;
+         height: 50px;
+         border: 1px solid;
+         border-radius:9px;
+         margin: 0px auto;
+         margin-top: 20px;
+         color: gray;
+         opacity: 1;
+         text-shadow: 2px 2px #555555;
+      }
+      p{
+         background: #FFFFFF;
+         width: 300px;
+         margin: 0px auto;
+         border-radius:9px;
+         margin-bottom: 20px;  
+         box-shadow: 10px 10px 5px #010101;
+        
+      }
+    </style>
+</head>
+<body>
+	<div id="wapper" >
+	    <select>
+	     <option value="生活用品" >daily uses</option>
+	     <option value="办公用品" >school uses</option>
+	     <option value="公司用品" >business uses</option>
+	     <option value="劳动用品" >labor uses</option>
+	     <option value="旅行用品" >travel uses</option>
+	    </select>
+	    <div id="biaodan" >
+	    <div class="con" ><input  type="number"  placeholder="price" v-model="title" /></div>
+	    <div class="con" ><textarea  id="maintext" type="text" placeholder="describe" v-model="maintext" ></textarea></div>
+	    </div>
+	    
+	    
+	    
+	    <div class="img" ><img  v-bind:src="src0"  class="color"  v-on:click="choosepic(0)" />
+	    <img  v-if="src0con"  src="../image/xxxxxxx.png"  class="pstimg"  v-on:click="canclepic(0)" />
+	    </div>
+	    <div  v-if="src0con" class="img" ><img  v-bind:src="src1"  class="color"  v-on:click="choosepic(1)" />
+	    <img  v-if="src1con" src="../image/xxxxxxx.png"  class="pstimg"  v-on:click="canclepic(1)" />
+	    </div>
+	    <div  v-if="src1con" class="img"  ><img    v-bind:src="src2"  class="color"  v-on:click="choosepic(2)" />
+	    <img  v-if="src2con" src="../image/xxxxxxx.png"  class="pstimg"  v-on:click="canclepic(2)" />
+	    </div>
+	    <div  v-if="src2con" class="img" ><img  v-bind:src="src3"  class="color" v-on:click="choosepic(3)" />
+	    <img  v-if="src3con" src="../image/xxxxxxx.png"  class="pstimg" v-on:click="canclepic(3)" />
+	    </div>
+	    <div   v-if="src3con" class="img"><img   v-bind:src="src4"  class="color"  v-on:click="choosepic(4)" />
+	    <img  v-if="src4con" src="../image/xxxxxxx.png"  class="pstimg" v-on:click="canclepic(4)" />
+	    </div>
+	    
+	    
+	    
+	   <!-- <div class="addmore " ><input id="on" type="button" value="submit"  v-on:click="submit" /></div>-->
+	    
+	   <p>  <input  type="button"  value="submit"  class="make" /> </p> 
+	    
+	    
+	</div>
+	
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.js" ></script>
+<script type="text/javascript">
+	apiready = function(){
+	
+	
+	
+	
+	
+	
+		var wapper = new Vue({
+		     el:"#wapper",
+		     data:{
+		       title:"",
+		       maintext:"",
+		       src0:"../image/addpic.png",
+		       src1:"../image/addpic.png",
+		       src2:"../image/addpic.png",
+		       src3:"../image/addpic.png",
+		       src4:"../image/addpic.png",
+		       src0con:false,
+		       src1con:false,
+		       src2con:false,
+		       src3con:false,
+		       src4con:false,
+		     },
+		     methods:{
+		       back:function(){
+		          api.closeWin({
+                    name:"secondon"
+                  });
+		           
+		        },
+		        submit:function(){
+		        //这里表示 提交之后的事情  用ajax 提交表单到服务器
+		        
+		        if(wapper.title==""||wapper.maintext=="")
+		        {
+		           alert("非空");
+		           return;
+		        }
+		        
+		        
+		        
+		           api.ajax({
+				    url: 'http://www.abccome.xyz/vue/seconddata.php',
+				    method: 'post',
+				    dataType:'text',
+				    data: {
+				        values: {
+				            count:user.count,
+				            title:wapper.title,
+				            maintext:wapper.maintext
+				        },
+				        files: {
+				            file1:wapper.src0,
+				            file2:wapper.src1,
+				            file3:wapper.src2,
+				            file4:wapper.src3,
+				            file5:wapper.src4
+				        }
+				    }
+				}, function(ret, err) {
+				    if (ret) {
+				      alert("上传成功");
+				   wapper.src0="../image/addpic.png";
+				   wapper.src1="../image/addpic.png"; 
+				   wapper.src2="../image/addpic.png"; 
+				   wapper.src3="../image/addpic.png"; 
+				   wapper.src4="../image/addpic.png";    
+				   wapper.src0con=false;
+				   wapper.src1con=false;
+				   wapper.src2con=false;
+				   wapper.src3con=false;
+				   wapper.src4con=false;    
+				  wapper.title="";
+				  wapper.maintext="";  
+				    
+				       
+				   activity.closeKeyFrame({
+	               id: 1
+                  });
+				       
+				      
+				    } else {
+				        api.alert({ msg: JSON.stringify(err) });
+				    }
+				}); 
+		        
+		        
+		        
+		        
+		        
+		         //  这里显示的意思是动态加载    这样提高用户体验
+		activity.keyFrame({
+			    rect: {
+			        w: 80,
+			        h: 100
+			    },
+			    styles: {
+			        bg: 'rgba(0,0,0,0.5)',
+			        corner: 5,
+			        interval: 50,
+			        frame: {
+			            w: 80,
+			            h: 80
+			        }
+			    }
+			}, function(ret) {
+			    alert(JSON.stringify(ret));
+			});
+		 
+		// 这里显示的意思是动态加载    这样提高用户体验
+		
+		
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        
+		        //提交数据
+		        },
+		   choosepic:function(index){
+               api.confirm({
+               title:"提示",
+               msg:"您想从哪里获取图片？",
+               buttons:["拍照","相册",'取消']
+               },function(ret,err){
+               	//coding...
+               	if(3==ret.buttonIndex)
+               	  {
+               	  return;
+               	    };
+              var sourceType ="album";
+              if(1==ret.buttonIndex)
+              {
+                 sourceType="camera";
+              }; 
+              api.getPicture({
+                sourceType:sourceType,
+                encodingType:"jpg",
+                mediaValue:"pic",
+                saveToPhotoAlbum: true
+              },function(ret,err){
+              	//coding...
+              	if(ret){
+              	alert(ret.data=="");
+              	if(ret.data==""){
+              	  return;
+              	}
+              	var tempiccon = 'src'+index+'con';
+              	var tempic = 'src'+index; 
+              	wapper[tempic]=ret.data;
+              	if(index==4)
+              	{
+              	   wapper.src4con=true; 
+              	   return;
+              	}
+              	wapper[tempiccon] = true;
+              	  // alert(ret.data==0);
+              	};
+              }); 	 
+               	    
+               });
+         
+         }, 
+           //上面都是取照片  
+           canclepic:function(index){
+              	if(index==4)
+              	{
+             	wapper.src4="../image/addpic.png";
+             	wapper.src4con=false;
+              	};
+              	if(index==3){
+              	  wapper.src3=wapper.src4;
+              	  wapper.src4="../image/addpic.png";
+              	  if(wapper.src4con){wapper.src4con=false;return;};
+              	                	  wapper.src3con=false;
+              	};
+              	if(index==2){
+              	wapper.src2=wapper.src3;
+              	wapper.src3=wapper.src4;
+              	wapper.src4="../image/addpic.png";
+              	if(wapper.src4con){wapper.src4con=false;return;};
+                if(wapper.src3con){wapper.src3con=false; return; };
+                 if(wapper.src2con){wapper.src2con=false; return; };
+              	};
+              	if(index==1){
+              	 wapper.src1=wapper.src2;
+              	 wapper.src2=wapper.src3;
+              	 wapper.src3=wapper.src4;
+              	 wapper.src4="../image/addpic.png";
+              	 if(wapper.src4con){wapper.src4con=false;return;};
+              	 if(wapper.src3con){wapper.src3con=false;return; };
+              	 if(wapper.src2con){wapper.src2con=false;return; };
+              	 if(wapper.src1con){wapper.src1con=false;return; }; 
+              	};
+              	if(index==0)
+              	{
+              	   wapper.src0=wapper.src1;
+              	   wapper.src1=wapper.src2;
+              	   wapper.src2=wapper.src3;
+              	   wapper.src3=wapper.src4;
+           	       wapper.src4="../image/addpic.png";
+              	   if(wapper.src4con){wapper.src4con=false;return;};
+              	   if(wapper.src3con){wapper.src3con=false;return; };
+              	   if(wapper.src2con){wapper.src2con=false;return; };
+              	   if(wapper.src1con){wapper.src1con=false;return; };
+              	   if(wapper.src0con){wapper.src0con=false;return; };
+              	};
+   	         },
+           //上面是取消照片
+           
+		     }
+		   
+		
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	};
+</script>
+</html>
